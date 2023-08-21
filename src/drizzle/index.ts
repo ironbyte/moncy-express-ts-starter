@@ -6,4 +6,4 @@ const sql = postgres(process.env.DATABASE_DIRECT_URL || '', { max: 1 });
 
 export const db = drizzle(sql);
 
-await migrate(db, { migrationsFolder: 'migrations' });
+await migrate(db, { migrationsFolder: 'src/drizzle/migrations' });

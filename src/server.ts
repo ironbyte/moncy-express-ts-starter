@@ -1,10 +1,10 @@
 import compression from 'compression';
-import 'dotenv/config';
 import express from 'express';
 import getPort from 'get-port';
 import helmet from 'helmet';
 import morgan from 'morgan';
 
+import '../env.ts';
 import { db } from './drizzle/index.ts';
 import { users } from './drizzle/schema/users.ts';
 import { generatePublicId } from './utils/public-id.ts';
