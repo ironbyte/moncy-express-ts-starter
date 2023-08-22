@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  chalk:
+    specifier: ^5.3.0
+    version: 5.3.0
   compression:
     specifier: ^1.7.4
     version: 1.7.4
@@ -14,6 +17,9 @@ dependencies:
   drizzle-orm:
     specifier: ^0.28.2
     version: 0.28.2(postgres@3.3.5)
+  drizzle-zod:
+    specifier: ^0.5.0
+    version: 0.5.0(drizzle-orm@0.28.2)(zod@3.22.2)
   express:
     specifier: ^4.18.2
     version: 4.18.2
@@ -806,7 +812,6 @@ packages:
   /chalk@5.3.0:
     resolution: {integrity: sha512-dLitG79d+GV1Nb/VYcCDFivJeK1hiukt9QjRNVOsUtTy1rR1YJsmpGGTZ3qJos+uw7WmWF4wUwBd9jxjocFC2w==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
-    dev: true
 
   /cli-color@2.0.3:
     resolution: {integrity: sha512-OkoZnxyC4ERN3zLzZaY9Emb7f/MhBOIpePv0Ycok0fJYT+Ouo00UBEIwsVsr0yoow++n5YWlSUgST9GKhNHiRQ==}
@@ -1018,6 +1023,16 @@ packages:
         optional: true
     dependencies:
       postgres: 3.3.5
+    dev: false
+
+  /drizzle-zod@0.5.0(drizzle-orm@0.28.2)(zod@3.22.2):
+    resolution: {integrity: sha512-gIOXclphhaleYFEGZFxSyJBoiPRyksGyIPgmgWz6a+j5JeaOrOf1QOPjf1p5AHYA+1O3Q01ondGOZfgObxBTsg==}
+    peerDependencies:
+      drizzle-orm: '>=0.23.13'
+      zod: '*'
+    dependencies:
+      drizzle-orm: 0.28.2(postgres@3.3.5)
+      zod: 3.22.2
     dev: false
 
   /ee-first@1.1.1:
