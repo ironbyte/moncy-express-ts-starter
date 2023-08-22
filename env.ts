@@ -9,7 +9,7 @@ declare global {
 
 const envSchema = z.object({
   DATABASE_DIRECT_URL: z.string(),
-  PORT: z.coerce.number(),
+  SESSION_SECRET: z.string(),
 });
 
 try {
