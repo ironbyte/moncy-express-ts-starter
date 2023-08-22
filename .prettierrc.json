@@ -6,7 +6,7 @@
   "tabWidth": 2,
   "trailingComma": "all",
   "importOrderSeparation": true,
-  "importOrder": ["^[.~/]"],
+  "importOrder": ["^[.#/]"],
   "bracketSpacing": true,
   "plugins": ["@trivago/prettier-plugin-sort-imports"]
 }

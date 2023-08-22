@@ -4,13 +4,12 @@ import getPort from 'get-port';
 import helmet from 'helmet';
 import morgan from 'morgan';
 
-import '../env.ts';
-import { db } from './drizzle/index.ts';
-import { users } from './drizzle/schema/users.ts';
-import { generatePublicId } from './utils/public-id.ts';
+import '#env.ts';
+import routes from '#src/routes/index.ts';
+import { getAllUsers } from '#src/services/users.ts';
 
 const appName = 'moncy-express-ts-starter';
-const preferredPortNumber = 9500;
+const preferredPortNumber = process.env.PORT || 3000;
 
 const app = express();
 
@@ -20,29 +19,18 @@ app.use(compression());
 app.use(helmet());
 app.disable('x-powered-by');
 
-console.log(await getPort());
+app.get('/', (req, res) => res.redirect('/v1/'));
 
-app.get('/', (req, res) => {
-  const publicIDsList = [];
-
-  for (let i = 0; i < 25; i++) {
-    const newId = generatePublicId();
-    publicIDsList.push(newId);
-  }
-
-  res.status(200).json({
-    publicIds: publicIDsList,
-  });
-});
+app.use('/v1', routes);
 
 app.get('/users', async (req, res) => {
-  const allUsers = await db.select().from(users);
+  const allUsers = await getAllUsers();
 
   res.status(200).json({ users: allUsers });
 });
 
 app.listen(preferredPortNumber, () => {
   console.log(
-    `${appName} app listening on http://localhost:${preferredPortNumber}`,
+    `${appName} app started on http://localhost:${preferredPortNumber}`,
   );
 });
