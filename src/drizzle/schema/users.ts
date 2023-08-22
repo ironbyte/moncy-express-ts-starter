@@ -10,7 +10,9 @@ export const users = pgTable('users', {
 });
 
 // Schema for inserting a user - can be used to validate API requests
-export const insertUserSchema = createInsertSchema(users);
+export const insertUserSchema = createInsertSchema(users, {
+  email: (schema) => schema.email.email('Email address is not valid'),
+});
 
 // Schema for selecting a user - can be used to validate API responses
 const selectUserSchema = createSelectSchema(users);

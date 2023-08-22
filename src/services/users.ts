@@ -32,7 +32,5 @@ export const createUser = async ({
     .returning();
   const insertedUser: User = insertedUsers[0];
 
-  console.log('createUser - insertedUser: ', insertedUser);
-
   return insertedUser;
 };
