@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import httpStatus from 'http-status';
 import { AnyZodObject } from 'zod';
 
 export const validate =
@@ -12,6 +13,6 @@ export const validate =
       });
       return next();
     } catch (error) {
-      return res.status(400).json(error);
+      return res.status(httpStatus.BAD_REQUEST).json(error);
     }
   };

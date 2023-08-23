@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import httpStatus from 'http-status';
 
 export class CustomError extends Error {
   status: number;
@@ -18,7 +19,7 @@ export const errorHandler = (
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   next: NextFunction,
 ) => {
-  const status = err.status || 500;
+  const status = err.status || httpStatus.INTERNAL_SERVER_ERROR;
   const message = err.message || 'Internal Server Error';
 
   // Log the error details for debugging

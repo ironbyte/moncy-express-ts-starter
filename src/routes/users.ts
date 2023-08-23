@@ -1,5 +1,6 @@
 import { InferModel } from 'drizzle-orm';
 import express from 'express';
+import httpStatus from 'http-status';
 import { z } from 'zod';
 
 import { db } from '#src/drizzle/index.ts';
@@ -39,26 +40,32 @@ const createUser = async ({
   return insertedUser;
 };
 
-const usersRouters = express.Router();
+const getAllUsers = async () => {
+  const allUsers = await db.select().from(users);
 
-usersRouters.post('/', validate(createUserSchema), async (req, res) => {
+  return allUsers;
+};
+
+const usersRouter = express.Router();
+
+usersRouter.post('/', validate(createUserSchema), async (req, res) => {
   const { name, email } = req.body;
   const insertedUser = await createUser({
     name,
     email,
   });
 
-  res.status(200).json({
+  res.status(httpStatus.OK).json({
     user: insertedUser,
   });
 });
 
-usersRouters.get('/', async (req, res) => {
-  const allUsers = await db.select().from(users);
+usersRouter.get('/', async (req, res) => {
+  const users = await getAllUsers();
 
-  res.status(200).json({
-    users: allUsers,
+  res.status(httpStatus.OK).json({
+    users,
   });
 });
 
-export default usersRouters;
+export default usersRouter;
