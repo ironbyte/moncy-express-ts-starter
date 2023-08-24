@@ -11,7 +11,8 @@
     "typecheck": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "drizzle:generate": "drizzle-kit generate:pg",
-    "drizzle:push": "drizzle-kit push:pg"
+    "drizzle:push": "drizzle-kit push:pg",
+    "drizzle:seed": "tsx ./src/drizzle/seed.ts"
   },
   "author": "Moncy Gopalan",
   "license": "ISC",
@@ -32,6 +33,7 @@
     "zod": "^3.22.2"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.0.2",
     "@total-typescript/ts-reset": "^0.5.1",
     "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "@types/compression": "^1.7.2",
